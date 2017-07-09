@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>从数组中删除特定值的元素</title>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		/**
+		 * @param {number[]} nums
+		 * @param {number} val
+		 * @return {number}
+		 */
+		var removeElement = function(nums, val) {
+			/*var count = 0;
+			var len = nums.length;
+		    for (var i = 0; i < len; i++) {
+		    	if (nums[i] === val) {
+		    		var tmp = nums[i];
+		    		nums[i] = nums[len-1-count];
+		    		nums[len-1-count] = tmp;
+		    		count ++;
+		    		i -- ;
+		    	}
+		    	if (i >= len-1-count) { 
+		    		break;
+		    	}
+		    }
+		    return len-count;*/
+		    var count = 0;
+		    for (var i = 0; i < nums.length; i++) {
+		    	if (nums[i] !== val) {
+		    		nums[count] = nums[i];
+		    		count ++;
+		    	}
+		    }
+		    return count;
+		};
+		var nums = [2];
+		console.log(removeElement(nums, 2));
+	</script>
+</body>
+</html>
