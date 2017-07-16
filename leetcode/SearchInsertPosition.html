@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>有序数组查找插入位置</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<script type="text/javascript">
+		/**
+	 * @param {number[]} nums
+	 * @param {number} target
+	 * @return {number}
+	 */
+	var searchInsert = function(nums, target) {
+	    // 
+	    var low = 0, high = nums.length, mid = 0;
+
+	    while(low<=high){
+	    	mid = parseInt((low+high)/2);
+	    	if (target==nums[mid]) {
+	    		return mid;
+	    	}else if (target>nums[mid]) {
+	    		low = mid+1;
+	    	}else{
+	    		high = mid-1
+	    	}
+	    }
+
+	    return target>nums[mid] ? mid+1 : mid;
+	};
+	var nums = [0,1,2,3,4,5,6,7,8,9];
+	// console.log(nums);
+	// console.log(searchInsert(nums, 3.5));
+
+	/**
+	 * @param {number[]} digits
+	 * @return {number[]}
+	 */
+	var plusOne = function(digits) {
+		var carry = 1;
+	    for (var i = digits.length-1; i>=0; i--) {
+	    	digits[i] = digits[i]+carry;
+	    	if (digits[i]>=10) {
+	    		digits[i] = 0;
+	    	}else{
+	    		carry = 0;
+	    		break;
+	    	}
+	    }
+	    if (carry==1) {
+	    	digits.unshift(1);
+	    }
+	    return digits;
+	};
+
+	/**
+	 * Definition for singly-linked list.
+	 */
+	 function ListNode(val) {
+	    this.val = val;
+	    this.next = null;
+	 }
+	/**
+	 * @param {ListNode} l1
+	 * @param {ListNode} l2
+	 * @return {ListNode}
+	 */
+	var addTwoNumbers = function(l1, l2) {
+	    var pNode1 = l1;
+	    var pNode2 = l2;
+	    var virtual = new ListNode(-1);
+	    var pNode = virtual;
+	    var carry = 0;
+	    while(pNode1!==null || pNode2!==null){
+	    	var A = pNode1 === null ? 0 : pNode1.val;
+	    	var B = pNode2 === null ? 0 : pNode2.val;
+	    	var sum = A + B + carry;
+	    	if (sum>=10) {
+	    		sum -= 10;
+	    		carry = 1;
+	    	}else{
+	    		carry = 0;
+	    	}
+	    	pNode.next = new ListNode(sum);
+	    	pNode = pNode.next;
+	    	pNode1 = pNode1 === null ? null : pNode1.next;
+	    	pNode2 = pNode2 === null ? null : pNode2.next;
+	    }
+	    if (carry==1) {
+	    	pNode.next = new ListNode(1);
+	    }
+	    return virtual.next;
+	};
+
+	var generateLinkedList = function(nums){
+		var virtual = new ListNode(-1);
+		var prev = virtual;
+		for (var i = 0; i < nums.length; i++) {
+			var temp = new ListNode(nums[i]);
+			prev.next = temp;
+			prev = temp;
+		}
+		return virtual.next;
+	} 
+
+	var printLinkedList = function(l){
+		var str = "";
+		while(l != null){
+			str += l.val+"->";
+			l = l.next;
+		}
+		console.log(str);
+	}
+
+	var l1 = generateLinkedList([2,4,3]);
+	var l2 = generateLinkedList([5,6,7]);
+	printLinkedList(l1);
+	printLinkedList(l2);
+	printLinkedList(addTwoNumbers(l1, l2));
+	</script>
+</body>
+</html>
