@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>leetcode summary</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<script type="text/javascript">
+		/* 1. Two Sum  
+		   Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+		 * @param {number[]} nums
+		 * @param {number} target
+		 * @return {number[]}
+		 */
+		var twoSum = function(nums, target) {
+		    for(var i=0; i<nums.length; i++){
+		    	for (var j = i+1; j < nums.length; j++) {
+		    		if (nums[i]+nums[j]==target) {
+		    			return [i, j];
+		    		}
+		    	}
+		    }
+		};// 时间复杂度O(n^2), 空间复杂度O(1)
+
+		var twoSum2 = function(nums, target) {
+			var res = [], obj = {};
+			for (var i = 0; i < nums.length; i++) {
+				if (obj.hasOwnProperty(target-nums[i])) {
+					res.push(obj[target-nums[i]]);
+					res.push(i);
+				}else{
+					obj[nums[i]] = i;
+				}
+			}
+			return res;
+		}; //时间复杂度O(n), 空间复杂度O(n)
+
+		/*在有序数组中找和为target两个数的下标*/
+		var twoSum3 = function(nums, target) {
+			var left = 0, right = nums.length-1;
+			while (left<right) {				
+				if (nums[left]+nums[right]==target) {
+					return [left, right];
+				}else if (nums[left]+nums[right]>target) {
+					right--
+				}else{
+					left++
+				}
+			}
+		}
+
+		/*var nums = [2, 7, 11, 15];
+		console.log(twoSum3(nums, 18));*/
+
+		// 菲波那切数列求第n个数
+		function fn(n){
+			if (n==1 || n==2) {
+				return 1;
+			}else{
+				return fn(n-2)+fn(n-1);
+			}
+		}
+		// 写出n以内的菲波那切数列
+		function fibonacci(end) {
+
+	        var num1 = 1;
+	        var num2 = 1;
+	        var arr = [];
+
+	        arr.push(num1, num2);
+
+	        for (var i = 3; i <= end; i++) {
+
+	            num2 = num1+num2;
+	            num1 = num2-num1;
+
+	            if (num2 > end) {
+	                break;
+	            }
+	            arr.push(num2);
+	        }
+	        return arr;
+	    }
+
+    	// document.write(fibonacci(1000));
+
+    	/* 7. Reverse Integer
+    		The input is assumed to be a 32-bit signed integer. Your function should return 0 when the reversed integer overflows.
+		 * @param {number} x
+		 * @return {number}
+		 * 要考虑数字的正负、原数字后面有几个0，数组自身有reverse方法（想办法将其转换为数组）
+		 */
+		var reverse = function(x) {
+			var res = "";
+		    var isPosition = x > 0 ? true : false;
+		    var strx = ""+Math.abs(x);
+		    var reversex = strx.split("").reverse().join("");
+		    var count = 0;
+		    for (var i = 0; i < reversex.length; i++) {
+		    	if (reversex[i]==0) {
+		    		count++
+		    	}else{
+		    		break;
+		    	}
+		    }
+		    res = Number(reversex.substr(count));
+		    if (!isPosition) {
+		    	res = -res;
+		    }
+		    if (res>resMath.pow(2,31)-1 || res<-Math.pow(2, 31)) {
+		    	res = 0;
+		    }
+		    return res;
+		};
+
+		var reverse2 = function(x) {
+			var res = "";
+			var isPosition = x>0 ? true : false;
+			var strX = ""+Math.abs(x);
+			var count = 0;
+			for (var i = strX.length-1; i >= 0; i--) {
+				res+=strX[i];
+			}
+			for (var i = 0; i < res.length; i++) {
+				if (res[i]==0) {
+					count++
+				}else{
+					break;
+				}
+			}
+			res = Number(res.substr(count));
+			if (!isPosition) {
+				res = -res;
+			}
+			if (res>Math.pow(2,31)-1 || res<-Math.pow(2,31)) {
+				res = 0;
+			}
+			return res;
+		}
+		// console.log(reverse2(-3000));
+
+		/*倒排序  为下一题做准备*/
+		// 按key排序
+		var dic = {
+			x: 2,
+			z: 1,
+			y: 3
+		};
+		var sdic = Object.keys(dic).sort();// Object.keys(dic)得到dic所有key组成的数组，将其按ASCII码排序
+		var res = {};
+		for(var i=0; i<sdic.length; i++) {
+			res[sdic[i]] = dic[sdic[i]];
+		}
+		// console.log(res); {x: 2, y: 3, z: 1}
+		// 按value排序
+		var sdicV = Object.keys(dic).sort(function(a,b){
+			return dic[b]-dic[a];
+		})// 按照value值大小对key排序
+		var resV = {};
+		for (var i = 0; i < sdicV.length; i++) {
+			resV[sdicV[i]] = dic[sdicV[i]];
+		}
+		// console.log(resV); {y: 3, x: 2, z: 1}
+
+		/*在长度大于10的数组中，找出出现次数最多的前10个数*/
+		function getTopTen(nums) {
+			var obj = {};
+			for (var i = 0; i < nums.length; i++) {
+				if (obj.hasOwnProperty(nums[i])) {
+					obj[nums[i]]++
+				}else{
+					obj[nums[i]] = 1
+				}
+			}
+			var sortedArr = Object.keys(obj).sort(function(a,b){return obj[b]-obj[a]});// 按照数字出现的次数对数字进行排序
+			return sortedArr.splice(0,10);
+		}
+
+		/*var nums = [1,3,1,1,4,5,6,5,6,3,2,4,12,23,43,55,76,878,98,34,23,43,55,878,98,55];
+		console.log(getTopTen(nums));*/
+
+
+		/* 9. Palindrome Number 回文数
+			Determine whether an integer is a palindrome. Do this without extra space.
+		 * @param {number} x
+		 * @return {boolean}
+		 */
+		var isPalindrome = function(x) {
+			var strX = ""+x;
+		    var left = 0, right = strX.length-1, res;
+		    while(left<=right){
+		    	if (strX[left]!=strX[right]) {
+		    		res = false;
+		    		break;
+		    	}else{
+		    		res = true;
+			    	left++;
+			    	right--;
+		    	}
+		    }
+		    return res;
+		};
+
+		// console.log(isPalindrome(8));
+
+		/* 14. Longest Common Prefix
+			Write a function to find the longest common prefix string amongst an array of strings.
+		 * @param {string[]} strs
+		 * @return {string}
+		 */
+		var longestCommonPrefix = function(strs) {
+			if (strs.length==0) return "";
+		    var shortest = strs[0];
+		    var res = "";
+		    for (var i = 1; i < strs.length; i++) {
+		    	shortest = shortest.length<strs[i].length ? shortest : strs[i]
+		    }
+		    for (var i = 0; i < shortest.length; i++) {
+		    	for (var j = 0; j < strs.length; j++) {
+		    		if (strs[j][i]!=shortest[i]) {
+		    			return res;
+		    		}
+		    	}
+		    	res+=shortest[i];
+		    }
+		    return res;
+		};
+
+		/*var strs = ["abc", "abcde", "abef", "abz", "abcdefg"];
+		console.log(longestCommonPrefix(strs));*/
+
+		/* 20. Valid Parentheses
+			Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+			The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
+		 * @param {string} s
+		 * @return {boolean}
+		 */
+		var isValid = function(s) {
+		    var obj = {
+		    	")": "(",
+		    	"]": "[",
+		    	"}": "{"
+		    };
+		    var stackBasket = [];
+		    for (var i = 0; i < s.length; i++) {
+		    	var len = stackBasket.length;
+		    	if (!obj.hasOwnProperty(s[i])) {
+		    		stackBasket.push(s[i]);
+		    	}else if(len==0 || stackBasket[len-1] != obj[s[i]]){
+		    		return false;
+		    	}else{
+		    		stackBasket.pop();
+		    	}
+		    }
+		    return stackBasket.length==0;
+		};
+		// console.log(isValid(""));
+	</script>
+</body>
+</html>

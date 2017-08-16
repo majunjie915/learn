@@ -4,7 +4,11 @@
 	<title>从数组中删除特定值的元素</title>
 </head>
 <body>
-
+	<ol>
+		<li>第一项</li>
+		<li>第二项</li>
+		<li>第三项</li>
+	</ol>
 
 	<script type="text/javascript">
 		/**
@@ -31,14 +35,64 @@
 		    var count = 0;
 		    for (var i = 0; i < nums.length; i++) {
 		    	if (nums[i] !== val) {
-		    		nums[count] = nums[i];
+		    		// nums[count] = nums[i];
 		    		count ++;
 		    	}
 		    }
 		    return count;
 		};
-		var nums = [2];
+		var nums = [2, 4, 5, 1, 2];
 		console.log(removeElement(nums, 2));
+
+		// 对象按照某一属性进行排序
+		var objArr = [
+			{
+				name: "czsr",
+				age: 20
+			},
+			{
+				name: "ba",
+				age: 16
+			},
+			{
+				name: "Badc",
+				age: 10
+			}
+		];
+
+		// 按数值排序
+		/*objArr.sort(function(a, b){
+			return a.age-b.age;
+		});*/
+
+		// 按字ASCII码排序
+		objArr.sort(function(a, b){
+			var value1 = a.name.toLowerCase();
+			var value2 = b.name.toLowerCase();
+			if (value1>value2) {
+				return 1;
+			}else{
+				return -1;
+			}
+		});
+		console.log(objArr);
+
+
+		/*var lis = document.getElementsByTagName("li");
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].onclick = function(){
+				console.log(i);
+			}
+		}*/
+		var lis = document.getElementsByTagName("li");
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].onclick = function(i){
+				return (function(){
+					console.log(i);
+				});
+			} (i);
+		}
+		
 	</script>
 </body>
 </html>

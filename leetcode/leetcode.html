@@ -18,7 +18,7 @@
     		}// 找到最短的字符串
 
     		for (var j = 0; j < minStrLen; j++) {
-    			var ch = strs[0][j];// 遍历第一个字符串的值
+    			var ch = strs[0][j];// 遍历第一个字符串的前minStrLen个字符串
     			for (var k = 1; k < strs.length; k++) {
     				if (strs[k][j] != ch) { // 后面的字符串的各个位与第一个对应的位上的值相比取公共部分
     					return maxStrPrefix;
@@ -183,7 +183,7 @@
             return nums;
         };
         // console.log(intersection2(nums1,nums2));
-        // 在一个有序数组中找出和为target的两个数
+        // 在一个有序数组中找出和为target的两个数在数组中的位置（以1开始计算）
         var twoSum2 = function(numbers, target) {
             var index1 = 0, index2 = numbers.length-1;
             while(index1 < index2){
@@ -197,7 +197,7 @@
                 }
             }
         };
-        var numbers = [3,2,4];
+        var numbers = [3,3,4];
         // console.log(twoSum2(numbers, 9));
 
         var twoSum = function(numbers, target) {
@@ -214,6 +214,7 @@
                 }
             }
         };
+        // console.log(twoSum(numbers, 6));
         
         var MinStack = function() {
             this.nums = [];
