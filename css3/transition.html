@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css3 过渡</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.myDiv1{
+			width: 100px;
+			height: 100px;
+			background: yellow;
+			transition-property: all;/* 可以对单个属性进行设置过渡 */
+			transition-duration: 2s;
+			transition-timing-function: linear;
+			transition-delay: 0.2s;
+			-moz-transition: all 2s linear 0.2s;
+			-webkit-transition: all 2s linear .2s;
+			-o-transition: all 2s linear .2s;
+		}
+		.myDiv1:hover{
+			width: 300px;
+			height: 300px;
+		}
+		button{
+			background: #fff;
+			margin: 20px;
+			height: 40px;
+			border: solid 1px #eee;
+			border-radius: 4px;
+			padding: 10px;
+		}
+		.myBtn2_1 {
+			transition: all .5s ease;
+			-moz-transition: all .5s ease;
+			-webkit-transition: all .5s ease;
+			-o-transition: all .5s ease;
+		}
+		button:hover{
+			background: lightblue;
+			color: #fff;
+		}
+
+		li{
+			list-style: none;
+		}
+		.demo-ul{margin-bottom: 200px;}
+		.demo-ul .fllil{
+			 display: flex;
+		}
+	    .demo-ul li{
+	        padding: 0 10px;
+	        width: 100px;
+	        background: #f90;
+	        position: relative;
+	    }
+	    .demo-ul li a{
+	        display: block;
+	        height: 40px;
+	        line-height: 40px;
+	        text-align: center;
+	    }
+	    .demo-ul li ul{
+	        position: absolute;
+	        width: 100%;
+	        top: 40px;
+	        left: 0;
+	        transform: scaleY(0);/*不能用display控制，会没动画效果。会有一个问题：必须留有足够的空间供隐藏的元素显示，因为页面不会重新渲染*/
+	        overflow: hidden;
+	        padding: 0;
+	    }
+	    .ul-transition ul{
+	        transform-origin: 0 0;
+	        transition: all .5s;
+	    }
+	    .demo-ul li:hover ul{
+	        transform: scaleY(1);/*缩放*/
+	        display: block;
+	    }
+	    .demo-ul li ul li{
+	        float: none;
+	        background: #0099ff;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="myDiv1">change width when hovered myDiv1</div>
+
+	<button class="myBtn2_1">Demo-transition</button>
+	<button class="myBtn2_2">Demo</button>
+
+	<div class="demo-hover demo-ul t_c">
+	    <ul class="fllil">
+	        <li>
+	            <a href="javascript:;">html</a>
+	            <ul>
+	                <li><a href="#">div</a></li>
+	                <li><a href="#">h1</a></li>
+	            </ul>
+	        </li>
+	        <li>
+	            <a href="javascript:;">js</a>
+	            <ul>
+	                <li><a href="#">string</a></li>
+	                <li><a href="#">array</a></li>
+	                <li><a href="#">object</a></li>
+	                <li><a href="#">number</a></li>
+	            </ul>
+	        </li>
+	        <li>
+	            <a href="javascript:;">css3</a>
+	            <ul>
+	                <li><a href="#">transition</a></li>
+	                <li><a href="#">animation</a></li>
+	            </ul>
+	        </li>
+	        <li>
+	            <a href="javascript:;">框架</a>
+	            <ul>
+	                <li><a href="#">vue</a></li>
+	                <li><a href="#">react</a></li>
+	            </ul>
+	        </li>
+	    </ul>
+	    <div class="clear"></div>
+	</div>
+	<div class="demo-hover demo-ul ul-transition t_c">
+	    <ul class="fllil">
+	        <li>
+	            <a href="javascript:;">html</a>
+	            <ul>
+	                <li><a href="#">div</a></li>
+	                <li><a href="#">h1</a></li>
+	            </ul>
+	        </li>
+	        <li>
+	            <a href="javascript:;">js</a>
+	            <ul>
+	                <li><a href="#">string</a></li>
+	                <li><a href="#">array</a></li>
+	                <li><a href="#">object</a></li>
+	                <li><a href="#">number</a></li>
+	            </ul>
+	        </li>
+	        <li>
+	            <a href="javascript:;">css3</a>
+	            <ul>
+	                <li><a href="#">transition</a></li>
+	                <li><a href="#">animation</a></li>
+	            </ul>
+	        </li>
+	        <li>
+	            <a href="javascript:;">框架</a>
+	            <ul>
+	                <li><a href="#">vue</a></li>
+	                <li><a href="#">react</a></li>
+	            </ul>
+	        </li>
+	    </ul>
+	    <div class="clear"></div>
+	</div>
+
+</body>
+</html>

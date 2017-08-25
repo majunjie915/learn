@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>形状转换</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.div1, .div2, .div3, .div4, .div5{
+			width: 200px;
+			height: 100px;
+			background: pink;
+			margin: 30px;
+		}
+		.div2{
+			transform: translate(30px, -20px);
+			-webkit-transform: translate(30px, -20px);
+			-moz-transform: translate(30px, -20px);
+			-o-transform: translate(30px, -20px);
+			-ms-transform: translate(30px, -20px);/*IE9*/
+		}
+		.div3{
+			transform: rotate(30deg);
+			-webkit-transform: rotate(30deg);
+			-moz-transform: rotate(30deg);
+			-o-transform: rotate(30deg);
+			-ms-transform: rotate(30deg);
+			transform-origin: 100px 50px;
+		}
+		.div4{
+			transform: scale(2,2);
+			-webkit-transform: scale(2,2);
+			-moz-transform: scale(2,2);
+			-o-transform: scale(2,2);
+			-ms-transform: scale(2,2);
+			transform-origin: 0 0;
+			margin-top: 50px;
+		}
+		.div5{
+			transform: skew(30deg, 30deg);
+			-o-transform: skew(30deg, 30deg);
+			-ms-transform: skew(30deg, 30deg);
+			-moz-transform: skew(30deg, 30deg);
+			-webkit-transform: skew(30deg, 30deg);
+			background: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="div1">hello world</div>
+	<div class="div2">hello world transform_translate</div>
+	<div class="div3">hello world transform_rotate</div>
+	<div class="div4">hello world transform_scale</div>
+	<div class="div5">hello world transform_skew</div>
+</body>
+</html>

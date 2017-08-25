@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>试题</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.highLight{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="content">
+		西丰、五女山、雨格、离堆公园、迎宾路、五女山、雨格、离堆公园、迎宾路、西丰、五女山、雨格、离堆公园、迎宾路、五女山、雨格、离堆公园、迎宾路西丰、五女山、雨格、离堆公园、迎宾路、五女山、雨格、离堆公园、迎宾路西丰、五女山、雨格、离堆公园、迎宾路、五女山、雨格、离堆公园、迎宾路西丰、五女山、雨格、离堆公园、迎宾路、五女山、雨格、离堆公园、迎宾路西丰、五女山、雨格、离堆公园、迎宾路、五女山、雨格、离堆公园、迎宾路西丰、五女山、雨格、离堆公园、迎宾路、五女山、雨格、离堆公园、迎宾路
+	</div>
+
+	<script type="text/javascript">
+		var z = 10;
+		function foo(){
+			console.log(z);
+		}
+		(function(funArg){
+			var z = 20;
+			funArg();
+		})(foo) // 10
+
+		var data = [];
+		for (var i = 0; i < 3; i++) {
+			data[i] = function(){
+				console.log(i);
+			}
+		}
+		data[0](); // 3
+		data[1](); // 3
+		data[2](); // 3
+
+		function getSpecilWord(words){
+			var reg = new RegExp(words,"g"); //   /五女山/g 字面量方式创建正则不能传入变量，会解析成要匹配的字符串
+			var prehtml = document.getElementById("content").innerHTML;
+			var newinner = prehtml.replace(reg, '<span class="highLight">'+words+'</span>');
+			document.getElementById("content").innerHTML = newinner;
+		}
+		getSpecilWord("五女山");
+		getSpecilWord("公园");
+
+		var tt = "aa";
+		function test(){
+			console.log(tt);  // tt是函数内局部被提升的变量，已声明未赋值
+			var tt = "dd";		// 变量声明提升。此时被赋值
+			console.log(tt);
+		}
+		test();
+
+		var a = 100;
+		function testResult(){
+			var b = 2 * a; // 2 * undefined
+			var a = 200;
+			var c = a/2;
+			console.log(b); // NaN
+			console.log(c);
+		}
+		testResult();
+
+		function fun(n, o){
+			console.log(o);
+			return {
+				fun: function(m){
+					return fun(m, n); // n为外层函数的变量，调用时n赋值给o。所以，第一次执行时，内层函数的第二个参数用的是外层函数的第一个参数。
+				}
+			}
+		}
+		var a = fun(0); a.fun(1); a.fun(2); a.fun(3);// undefined, 0, 0, 0
+		var b = fun(0).fun(1).fun(2).fun(3);	// undefined, 0, 1, 2
+		var c = fun(0).fun(1); c.fun(2); c.fun(3); // undefined, 0, 1, 1
+	</script>
+</body>
+</html>
