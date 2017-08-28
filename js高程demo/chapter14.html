@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="eventUtil.js"></script>
+</head>
+<body>
+	<!-- <input id="textBox"></input><br/>
+	<input id="numberOnly"></input><br/>
+
+	<form id="form">		
+		<input type="text" name="tel1" id="textTel1" maxlength="3"></input>
+		<input type="text" name="tel2" id="textTel2" maxlength="3"></input>
+		<input type="text" name="tel3" id="textTel3" maxlength="4"></input>
+	</form>
+	-->
+	<div class="editable" id="richedit" contenteditable style="width: 100px;
+	height: 100px; border: solid 1px;"></div> <!-- contenteditable使元素像textarea一样可编辑 -->
+
+	<script type="text/javascript">
+	/*
+		var textBox = document.getElementById("textBox");
+		textBox.value = "hello world";
+		textBox.focus();
+		textBox.setSelectionRange(0, textBox.value.length);
+
+		var textBox2 = document.getElementById("numberOnly");
+		EventUtil.addHandler(textBox2, "paste", function(event){
+			event = EventUtil.getEvent(event);
+			var text = EventUtil.getClipboardText(event);
+			if (!/^\d*$/.test(text)) {
+				EventUtil.preventDefault(event);
+			}
+		})
+
+		// 自动切换焦点
+		(function(){
+			function tabForward(event){
+				event = EventUtil.getEvent(event);
+				var target = EventUtil.getTarget(event);
+
+				if (target.value.length == target.maxlength) {
+					var form = target.form;
+
+					for (var i = 0; i < form.elements.length; i++) {
+						if(form.elements[i] == target){
+							if (form.elements[i+1]) {
+								form.elements[i+1].focus();
+							}
+							return;
+						}
+					}
+				}
+			}
+
+			var textBox3 = document.getElementById("textTel1");
+			var textBox4 = document.getElementById("textTel2");
+			var textBox5 = document.getElementById("textTel3");
+
+			EventUtil.addHandler(textBox3, "keyup", tabForward);
+			EventUtil.addHandler(textBox4, "keyup", tabForward);
+			EventUtil.addHandler(textBox5, "keyup", tabForward);
+		})()
+	*/
+
+	
+	</script>
+</body>
+</html>

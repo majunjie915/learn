@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>导航-菜单/面包屑</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+</head>
+<body>
+	<div class="layui-fluid">
+		<ul class="layui-nav" lay-filter="">
+			<li class="layui-nav-item">
+				<a href="">最新活动</a>
+			</li>
+			<li class="layui-nav-item layui-this">
+				<a href="">产品</a>
+			</li>
+			<li class="layui-nav-item">
+				<a href="">大数据</a>
+			</li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">解决方案</a>
+				<dl class="layui-nav-child">
+					<dd><a href="">移动模块</a></dd>
+					<dd><a href="">后台模板</a></dd>
+					<dd><a href="">电商平台</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item">
+				<a href="">社区</a>
+			</li>
+		</ul>
+
+		<ul class="layui-nav layui-bg-blue" style="margin: 20px 0">
+			<li class="layui-nav-item">
+				<a href="">控制台<span class="layui-badge">9</span></a>
+			</li>
+			<li class="layui-nav-item">
+				<a href="">个人中心<span class="layui-badge-dot"></span></a>
+			</li>
+			<li class="layui-nav-item">
+				<a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img">我</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;">修改信息</a></dd>
+					<dd><a href="javascript:;">安全管理</a></dd>
+					<dd><a href="javascript:;">退了</a></dd>
+				</dl>
+			</li>
+		</ul>
+
+		<!-- 垂直导航 -->
+		<ul class="layui-nav layui-nav-tree" lay-filter="test">
+		<!-- 侧边栏导航 -->
+		<!-- <ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="test"> -->
+			<li class="layui-nav-item layui-nav-itemed">
+				<a href="javascript:;">默认展开</a>
+				<dl class="layui-nav-child">
+					<dd><a href="javascript:;">选项1</a></dd>
+					<dd><a href="javascript:;">选项2</a></dd>
+					<dd><a href="">跳转</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item">
+				<a href="javascript:;">解决方案</a>
+				<dl class="layui-nav-child">
+					<dd><a href="">移动模块</a></dd>
+					<dd><a href="">后台模板</a></dd>
+					<dd><a href="">电商平台</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item">
+				<a href="">产品</a>
+			</li>
+			<li class="layui-nav-item">
+				<a href="">大数据</a>
+			</li>
+		</ul>
+
+		<!-- 面包屑 -->
+		<span class="layui-breadcrumb">
+			<a href="">首页</a>
+			<a href="">国际新闻</a>
+			<a href="">亚太地区</a>
+			<a><cite>正文</cite></a>
+		</span><hr style="background: red" />
+		<span class="layui-breadcrumb" lay-separator="-">
+			<a href="">首页</a>
+			<a href="">国际新闻</a>
+			<a href="">亚太地区</a>
+			<a><cite>正文</cite></a>
+		</span><hr class="layui-bg-orange" />
+		<span class="layui-breadcrumb" lay-separator="|">
+			<a href="">娱乐</a>
+			<a href="">八卦</a>
+			<a href="">体育</a>
+			<a href="">搞笑</a>
+			<a href="">视频</a>
+			<a href="">游戏</a>
+			<a href="">综艺</a>
+		</span>
+	</div>
+
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript">
+		// 导航依赖element模块，否则无法进行功能性操作
+		layui.use(['element'], function(){
+			var element = layui.element;
+		})
+	</script>
+</body>
+</html>

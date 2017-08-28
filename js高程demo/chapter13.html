@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>event</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="eventUtil.js"></script>
+</head>
+<body>
+	<button id="myBtn">click me</button>
+	<button id="myBtn2">click again</button><br/>
+	<a href="chapter12.html">go to chapter12.html</a>
+	<div style="height: 500px"></div>
+	<div id="myDiv" style="width: 100px; height: 100px; background: lightblue;"></div>
+	<div id="myDiv2">Right click or ctrl+click me to get a custom context menu.Click anywhere else to get the default context menu.</div>
+	<ul id="myMenu" style="position: absolute;visibility: hidden;background-color: silver;">
+		<li><a href="http://www.nczonline.net">Nicholas` site</a></li>
+		<li><a href="http://www.wrox.com">Wrox site</a></li>
+		<li><a href="http://www.yahoo.com">Yahoo!</a></li>
+	</ul>
+
+	<script type="text/javascript">
+	/*
+		var btn = document.getElementById("myBtn");
+		var handler = function(){
+			console.log("hello word")
+		}
+		EventUtil.addHandler(btn, "click", handler);
+		EventUtil.removeHandler(btn, "click", handler);
+
+		var btn2 = document.getElementById("myBtn2");
+		btn2.onclick = function(event){
+			console.log(event.eventPhase);
+		}
+		document.body.addEventListener("click", function(e){
+			console.log(e.eventPhase);
+		}, true);
+		document.body.onclick = function(e){
+			console.log(e.eventPhase);
+		}
+
+		EventUtil.addHandler(window, "load", function(){
+			var image = document.createElement("img");
+			EventUtil.addHandler(image, "load", function(event){
+				event = EventUtil.getEvent(event);
+				console.log(EventUtil.getTarget(event).src);
+			})
+			document.body.appendChild(image);
+			image.src = "images/0.jpg";
+		})
+
+		EventUtil.addHandler(window, "unload", function(event){
+			console.log("unloaded!");
+		})
+
+		var myDiv = document.getElementById("myDiv");
+		EventUtil.addHandler(myDiv, "click", function(event){
+			event = EventUtil.getEvent(event);
+			// 客户区坐标
+			console.log("clientX: "+event.clientX+"  clientY:"+event.clientY);
+			// 页面坐标
+			console.log("pageX: "+event.pageX+"  pageY:"+event.pageY);// 没有滚动时二者相等
+			// 屏幕坐标
+			console.log("screenX: "+event.screenX+" screenY:"+event.screenY);
+		})
+
+		EventUtil.addHandler(myDiv, "mouseout", function(event){
+			event = EventUtil.getEvent(event);
+			var target = EventUtil.getTarget(event);
+			var relatedTarget = EventUtil.getRelatedTarget(event);
+			console.log("Moused out of "+target.tagName+" to "+relatedTarget.tagName);
+		})
+	*/
+
+		// h5 contextmenu事件
+		EventUtil.addHandler(window, "load", function(event){
+			var myDiv2 = document.getElementById("myDiv2");
+			EventUtil.addHandler(myDiv2, "contextmenu", function(event){
+				event = EventUtil.getEvent(event);
+				EventUtil.preventDefault(event);
+
+				var menu = document.getElementById("myMenu");
+				menu.style.left = event.clientX+"px";
+				menu.style.top = event.clientY+"px";
+				menu.style.visibility = "visible";
+			});
+
+			EventUtil.addHandler(document, "click", function(){
+				document.getElementById("myMenu").style.visibility = "hidden";
+			})
+		})
+	</script>
+</body>
+</html>

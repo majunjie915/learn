@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>日期时间组件</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+</head>
+<body>
+	<div class="layui-inline">
+		<input type="text" name="" class="layui-input" id="test1">
+	</div>
+
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use('laydate', function(){
+			var laydate = layui.laydate;
+
+			laydate.render({
+				elem: '#test1',
+				type: 'date',
+				// range: '~',
+				format: 'yyyy年MM月dd日',
+				value: '2018年08月08日', // 格式必须与设置的format保持一致
+				min: '2017-01-01',
+				max: '2017-12-31',
+			})
+		})
+	</script>
+</body>
+</html>

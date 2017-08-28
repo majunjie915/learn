@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表格 - 页面元素</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+</head>
+<body>
+	<div class="layui-container">
+		<!-- 常用语法 -->
+		<table class="layui-table" lay-even lay-skin="none" lay-size="lg">
+			<colgroup>
+				<col width="150">
+				<col width="200">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>昵称</th>
+					<th>加入时间</th>
+					<th>签名</th>
+				</tr>
+			</thead>
+			<tbody>
+			    <tr>
+			        <td>贤心</td>
+			        <td>2016-11-29</td>
+			        <td>人生就像是一场修行</td>
+			    </tr>
+			    <tr>
+			        <td>许闲心</td>
+			        <td>2016-11-28</td>
+			        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+			    </tr>
+			    <tr>
+			        <td>sentsin</td>
+			        <td>2016-11-27</td>
+			        <td>Life is either a daring adventure or nothing.</td>
+			    </tr>
+			</tbody>
+		</table>
+
+		<!-- 徽章 -->
+		<!-- 小圆点 -->
+		<span class="layui-badge-dot"></span>
+		<span class="layui-badge-dot layui-bg-orange"></span>
+		<span class="layui-badge-dot layui-bg-green"></span>
+		<span class="layui-badge-dot layui-bg-cyan"></span>
+		<span class="layui-badge-dot layui-bg-blue"></span>
+		<span class="layui-badge-dot layui-bg-black"></span>
+		<span class="layui-badge-dot layui-bg-gray"></span>
+		<!-- 椭圆形 -->
+		<span class="layui-badge">6</span>
+		<span class="layui-badge">99</span>
+		<span class="layui-badge">123446</span>
+		<span class="layui-badge">赤</span>
+		<span class="layui-badge layui-bg-orange">橙</span>
+		<span class="layui-badge layui-bg-green">绿</span>
+		<span class="layui-badge layui-bg-cyan">青</span>
+		<span class="layui-badge layui-bg-blue">蓝</span>
+		<span class="layui-badge layui-bg-blank">黑</span>
+		<span class="layui-badge layui-bg-gray">灰</span>
+		<!-- 边框体 -->
+		<span class="layui-badge-rim">6</span>
+		<span class="layui-badge-rim">Hot</span>
+		<!-- 与其他元素配合使用 -->
+		<!-- 按钮 -->
+		<button class="layui-btn">查看消息<span class="layui-badge layui-bg-gray">1</span></button>
+		<button class="layui-btn">动态<span class="layui-badge-dot layui-bg-orange"></span></button>
+		<!-- 导航 -->
+		<ul class="layui-nav" style="text-align: right;">
+			<li class="layui-nav-item">
+				<a href="">控制台<span class="layui-badge">9</span></a>
+			</li>
+			<li class="layui-nav-item">
+				<a href="">个人中心<span class="layui-badge-dot"></span></a>
+			</li>
+		</ul>
+		<!-- 选项卡 -->
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title">
+				<li class="layui-this">网站设置</li>
+				<li>管理设置<span class="layui-badge-dot"></span></li>
+				<li>最新邮件<span class="layui-badge">99+</span></li>
+			</ul>
+			<div class="layui-tab-content"></div>
+		</div>
+
+		<!-- 时间线 -->
+		<ul class="layui-timeline">
+			<li class="layui-timeline-item">
+				<i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+				<div class="layui-timeline-content layui-text">
+					<h3 class="layui-timeline-title">8月18日</h3>
+					<p>
+						layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
+				        <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
+				        <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+					</p>
+				</div>
+			</li>
+			<li class="layui-timeline-item">
+				<i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+				<div class="layui-timeline-content layui-text">
+					<h3 class="layui-timeline-title">8月16日</h3>
+					<p>杜甫的思想核心是儒家的仁政思想，他有“<em>致君尧舜上，再使风俗淳</em>”的宏伟抱负。个人最爱的名篇有：</p>
+					<ul>
+						<li>《登高》</li>
+						<li>《茅屋为秋风所破歌》</li>
+					</ul>
+				</div> 
+			</li>
+			<li class="layui-timeline-item">
+				<i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+				<div class="layui-timeline-content layui-text">
+					<h2 class="layui-timeline-title">8月15日</h2>
+					<p>
+						中国人民抗日战争胜利72周年
+				        <br>常常在想，尽管对这个国家有这样那样的抱怨，但我们的确生在了最好的时代
+				        <br>铭记、感恩
+				        <br>所有为中华民族浴血奋战的英雄将士
+				        <br>永垂不朽
+					</p>
+				</div>
+			</li>
+			<li class="layui-timeline-item">
+				<i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+				<div class="layui-timeline-content layui-text">
+					过去
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['element', 'layer'], function(){
+			var element = layui.element;
+			var layer = layui.layer;
+
+			// layer.alert('ok', {icon: 1});
+			// layer.msg('不开心', {icon: 5})
+			layer.load(1);
+		})
+	</script>
+</body>
+</html>

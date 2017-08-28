@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>开始使用layui</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="../layui/css/layui.css">
+</head>
+<body>
+	<div class="layui-fluid">
+		<div class="layui-tab">
+			<ul class="layui-tab-title">
+				<li class="layui-this">标题一</li>
+				<li>标题二</li>
+				<li>标题三</li>
+			</ul>
+			<div class="layui-tab-content">
+				<div class="layui-tab-item layui-show">内容1</div>
+				<div class="layui-tab-item">内容2</div>
+				<div class="layui-tab-item">内容3</div>
+			</div>
+		</div>
+
+		<!-- 中屏  -->
+		<div class="layui-row layui-col-space10">
+			<div class="layui-col-md9 layui-bg-green">你的内容9/12</div>
+			<div class="layui-col-md3 layui-bg-blue">你的内容3/12</div>
+		</div>
+		<!-- 移动设备、平板、桌面端的不同表现 -->
+		<div class="layui-row">
+			<div class="layui-col-xs6 layui-col-sm6 layui-col-md3 layui-bg-red">移动：6/12 | 平板：6/12 | 桌面：4/12</div>
+			<div class="layui-col-xs6 layui-col-sm6 layui-col-md4 layui-bg-gray layui-col-md-offset1">移动：6/12 | 平板：6/12 | 桌面：4/12</div>
+			<div class="layui-col-xs4 layui-col-sm12 layui-col-md3 layui-bg-orange layui-col-md-offset1">移动：4/12 | 平板：12/12 | 桌面：4/12</div>
+			<div class="layui-col-xs4 layui-col-sm7 layui-col-md8">移动：4/12 | 平板：7/12 | 桌面：8/12</div>
+			<div class="layui-col-xs4 layui-col-sm5 layui-col-md4">移动：4/12 | 平板：5/12 | 桌面：4/12</div>
+		</div>
+
+		<i class="layui-icon" style="color: #1e9fff;font-size: 30px">&#xe60c;</i>
+		<i class="layui-icon" style="color: #f00">&#xe616;</i>
+
+		<button class="layui-btn layui-btn-primary layui-btn-big">一个标准的按钮</button>
+		<a href="http://www.layui.com" class="layui-btn layui-btn-normal layui-btn-small layui-btn-radius">一个可跳转的按钮</a>
+		<div class="layui-btn layui-btn-warm layui-btn-mini"><i class="layui-icon">&#x1002;</i></div>
+
+		<!-- 按钮组 -->
+		<div class="layui-btn-group">
+			<button class="layui-btn">增加</button>
+			<button class="layui-btn">编辑</button>
+			<button class="layui-btn">删除</button>
+		</div>
+		<div class="layui-btn-group">
+			<button class="layui-btn layui-btn-small">
+				<i class="layui-icon">&#xe654;</i>
+			</button>
+			<button class="layui-btn layui-btn-small">
+				<i class="layui-icon">&#xe642;</i>
+			</button>
+			<button class="layui-btn layui-btn-small">
+				<i class="layui-icon">&#xe640;</i>
+			</button>
+			<button class="layui-btn layui-btn-small">
+				<i class="layui-icon">&#xe602;</i>
+			</button>
+		</div>
+		<div class="layui-btn-group">
+			<button class="layui-btn layui-btn-primary layui-btn-small">
+				<i class="layui-icon">&#xe654;</i>
+			</button>
+			<button class="layui-btn layui-btn-primary layui-btn-small">
+				<i class="layui-icon">&#xe642;</i>
+			</button>
+			<button class="layui-btn layui-btn-primary layui-btn-small">
+				<i class="layui-icon">&#xe640;</i>
+			</button>
+		</div>
+
+		
+	</div>
+
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer', 'form', 'upload', 'jquery'], function(){
+			var layer = layui.layer, form = layui.form, upload = layui.upload, $ = layui.$;
+			// layer.msg('Hello world!');
+		})
+	</script>
+</body>
+</html>

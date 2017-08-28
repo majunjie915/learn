@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM2 DOM3 样式</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#mydiv{
+			background-color: red;
+			width: 500px;
+			height: 500px;
+		}
+	</style>
+</head>
+<body>
+	<div style=" border: solid 1px;text-align: center;line-height: 500px" id="mydiv">DOM2新增样式属性与方法</div>
+
+	<script type="text/javascript">
+		var mydiv = document.getElementById("mydiv");
+		// 行内样式操作
+		mydiv.style.backgroundColor = "pink";
+		console.log(mydiv.style.height);// 非行内样式可以赋值不能取值
+		console.log(mydiv.style.cssText);
+		console.log(mydiv.style.length);
+		console.log(mydiv.style.parentRule);
+		mydiv.style.removeProperty("border");
+		for(var i = 0; i<mydiv.style.length; i++){
+			var prop = mydiv.style[i];
+			var value = mydiv.style.getPropertyValue(prop);
+			console.log(prop+":"+value);
+		}
+
+		// 非行内样式操作
+		var computedStyle = document.defaultView.getComputedStyle(mydiv, null);
+		console.log(computedStyle.width);
+		console.log(computedStyle.textAlign);
+
+		// 获取可视区域的宽、高
+		function getViewport(){
+			if (document.compatMode == "BackMode") {
+				return {
+					width: document.body.clientWidth,
+					height: document.body.clientHeight
+				};
+			}else{
+				return {
+					width: document.documentElement.clientWidth,
+					height: document.documentElement.clientHeight
+				};
+			}
+		}
+		console.log(getViewport()["height"]);
+	</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>原生拖放</title>
+	<script type="text/javascript" src="eventUtil.js"></script>
+</head>
+<body>
+
+	<div id="dropTarget" style="width: 500px;height: 500px;border: solid 1px;"></div>
+
+	<script type="text/javascript">
+		var dropTarget = document.getElementById("dropTarget");
+
+		EventUtil.addHandler(dropTarget, "dropover", function(e){
+			e = EventUtil.getEvent(e);
+			EventUtil.preventDefault(e);
+		});
+
+		EventUtil.addHandler(dropTarget, "dropenter", function(e){
+			e = EventUtil.getEvent(e);
+			EventUtil.preventDefault(e);
+		});
+
+		EventUtil.addHandler(dropTarget, "drop", function(e){
+			e = EventUtil.getEvent(e);
+			EventUtil.preventDefault(e);
+		});
+	</script>
+</body>
+</html>
