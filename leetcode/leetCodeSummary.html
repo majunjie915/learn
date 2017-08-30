@@ -108,7 +108,7 @@
 		    if (!isPosition) {
 		    	res = -res;
 		    }
-		    if (res>resMath.pow(2,31)-1 || res<-Math.pow(2, 31)) {
+		    if (res>Math.pow(2,31)-1 || res<-Math.pow(2, 31)) {
 		    	res = 0;
 		    }
 		    return res;
@@ -261,7 +261,7 @@
 		function quickSort(arr) {
 			if (arr.length<=1) return arr;
 			var pivotIndex = Math.floor(arr.length/2);
-			var pivot = arr.splice(pivotIndex, 1)[0];
+			var pivot = arr.splice(pivotIndex, 1)[0];// 返回删除内容 数组
 			var left = [], right = [];
 			for (var i = 0; i < arr.length; i++) {
 				if (arr[i]<pivot) {
@@ -276,6 +276,23 @@
 		}
 		/*var arr = [7,3,7,5,9,1,23,56,8,0];
 		console.log(quickSort(arr));*/
+
+		/*冒泡排序*/
+		function bubbleSort(arr){
+			var tmp = 0;
+			for (var i = 1; i < arr.length; i++) {
+				for (var j = 0; j < arr.length-i; j++) {
+					if (arr[j]>arr[j+1]) {
+						tmp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = tmp;
+					}
+				}
+			}
+			return arr;
+		}
+		var arr = [3,6,2,9,78,45,1,2,0];
+		console.log(bubbleSort(arr));
 	</script>
 </body>
 </html>
