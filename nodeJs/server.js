@@ -24,7 +24,7 @@ function start(route){
 		route(pathName);
 
 		response.writeHead(200, {"Content-Type": "text/html"});
-		response.write("hello node");
+		response.write("hello node.js");
 		response.end();
 	}
 	http.createServer(onRequest).listen(8888);

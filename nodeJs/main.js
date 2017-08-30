@@ -88,11 +88,11 @@ fs.createReadStream("input.txt")
 console.log("文件压缩完成");
 
 // 解压input.txt.gz文件为input.txt
-fs.createReadStream("input.txt.gz")
+/*fs.createReadStream("input.txt.gz")
   .pipe(zlib.createGunzip())
-  .pipe(fs.createWriteStream("input.txt"));
+  .pipe(fs.createWriteStream("input2.txt"));
 
-console.log("文件解压完成");
+console.log("文件解压完成");*/
 
 
 /*引入模块*/
