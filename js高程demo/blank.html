@@ -5,5 +5,25 @@
 </head>
 <body>
 
+	<script type="text/javascript">
+		var result = Number.MAX_VALUE + Number.MAX_VALUE;
+		console.log(isFinite(result));
+
+		//Math.abs(num)/0 == infinity; -Math.abs(num)/0 == -infinity; 0/0==NaN
+
+		function buildUrl() {
+			var qs = "?debug=true";
+
+			with(location){
+				// 可以直接用引入对象里的属性，相当于location.href
+				var url = href + qs;
+				console.log(location.href === href);
+			}
+
+			return url;
+		}
+		var res = buildUrl();
+		console.log(res);
+	</script>
 </body>
 </html>
