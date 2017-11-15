@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>前端网站安全方面的问题</title>
+	<style type="text/css">
+		table{ border-collapse: collapse; }
+		table th,td{ border: solid 1px #eee;text-align: center; }
+	</style>
+</head>
+<body>
+	<h3>跨站伪造请求攻击（CSRF）</h3>
+	<h5>前后端会话——关于session</h5>
+	<p>
+		PHP的session数据不是存储在客户端，而是存储在服务器上。而客户端使用cookic存储一个服务器分配的客户端会话序号（sessionID）。当客户端请求服务器时，会将sessionID传给服务器，服务器通过配对获取session内容。
+	</p>
+	<h5>前后端会话——关于token</h5>
+	<p>
+		如果因为各种原因不能通过session实现登录状态时，可以使用token。<br/>
+		用户必须输入用户名密码并通过验证后，服务端才会分配一个token，传回并存储在客户端作为凭证（同时存储在服务器上）。
+	</p>
+	<h5>关于CSRF攻击与防御</h5>
+	<p>
+		原理：如果在同一个浏览器中同时打开诈骗网站A和网上银行B。这时，如果网站A中伪造了指向网银B的链接（或转账凭证），而当前浏览器又存储了B的token（或sessionID），则诈骗网站A的表单就能够成功提交并执行。<br/>但是网站A无法获取该用户token的具体值，因此token是相对安全的。
+	</p>
+	<p>
+		防御：不要讲请求参数放在get中，而应该放在post、put、delete中通过表单提交，然后在表单中再加上一个变化的random key即token，请求服务器时验证这个token就可以防止跨站伪造请求了。（每次刷新页面的时候token值就会改变，也可以用于防止表单的重复提交，当提交一次后服务端的token会被更改，再次提交本地的token未变，验证不通过）
+	</p>
+	<p>
+		弊端：多页面请求时，必须采用多token同时生成的方法，这样会占用更多资源，执行效率会降低。
+	</p>
+	<hr/>
+	<h4>小插曲</h4>
+	<h6>get、post、put、delete的区别</h6>
+	<p>原理：<br/>
+		Http定义了与服务器交互的不同方法，最基本的方法有4中，分别是：get、post、put、delete。URL全称是资源描述符，我们可以这样认为：一个URL地址，它用于描述一个网络上的资源，而HTTP中的get、post、put、delete就对应着这个资源的查、改、增、删4个操作。get一般用于获取/查询资源信息，而post一般用于更新资源信息。<br/>
+		实际工作中没有按照HTTP规范去做，原因：1、为方便，更新资源时用了get，因为用post必须用到FROM（表单），这样会麻烦一些。<br/>2、对资源的增、删、改、查操作，其实都可以通过get/post完成，不需要用到put的delete。<br/>3、早期的web MVC框架设计者们并没有 有意识的将URL当做抽象的资源开看待和设计，所以导致一个比较严重的问题是传统的web MVC框架基本上都只支持get和post两种HTTP方法，而不支持put和delete方法<br/><br/>
+		<table>
+			<caption style="font-size: 20px;font-weight: bold;margin-bottom: 10px;">
+				get VS post
+			</caption>
+			<tr>
+				<th>方法</th>
+				<th>GET</th>
+				<th>POST</thd>
+			</tr>
+			<tr>
+				<td>后退按钮/刷新</td>
+				<td>无害</td>
+				<td>数据会被重新提交（浏览器应该告诉用户数据会被重新提交）</td>
+			</tr>
+			<tr>
+				<td>书签</td>
+				<td>可收藏为书签</td>
+				<td>不可收藏为书签</td>
+			</tr>
+			<tr>
+				<td>编码类型</td>
+				<td>application/x-www-form-urlencoded</td>
+				<td>application/x-www-form-urlencoded 或 multipart/form-data。为二进制使用多重编码</td>
+			</tr>
+			<tr>
+				<td>历史</td>
+				<td>参数保留在浏览器历史中</td>
+				<td>参数不会保留在浏览器历史中</td>
+			</tr>
+			<tr>
+				<td>对数据长度有限制</td>
+				<td>是，URL的最大长度是2048个字符</td>
+				<td>无限制</td>
+			</tr>
+			<tr>
+				<td>对数据类型的限制</td>
+				<td>只允许ASCII字符</td>
+				<td>没有限制。也允许二进制数据</td>
+			</tr>
+			<tr>
+				<td>安全性</td>
+				<td>与post相比，个体的安全性较差，因为发送的数据是url的一部分</td>
+				<td>post比个体更安全，因为参数不会被保存在浏览器历史或web服务器日志中</td>
+			</tr>
+			<tr>
+				<td>可见性</td>
+				<td>数据在URL中对所有人都是可见的</td>
+				<td>数据不会显示在URL中</td>
+			</tr>
+		</table>
+	</p>
+	<br/>
+	<hr/>
+	<h3>跨站脚本攻击(xss)：同源策略下</h3>
+	<p>
+		原理：攻击者在网页中嵌入客户端脚本（如JavaScript），当用户浏览次网页时，脚本就会在用户的浏览器上执行，从而达到攻击者的目的，比如获取用户的cookic，导航到恶意网站，携带木马等。XSS攻击属于被动式攻击。<br/><br/>
+		防御：1、客户端：<br/>
+		(1)输入检查：同时在客户端JavaScript中和服务器代码中实现相同的输入检查。原因是用JS做检查很容易被攻击者绕过，不过可以阻挡大部分误操作的正常用户，从而节约服务资源。<br/>
+		攻击者可以输入XSS的地方有：input、window.href/hash、window.name、document.referrer、document.cookic、localStroage、XMLHttpRequest返回的数据。<br/><br/>
+		(2)输出检查<br/>
+		一般是在变量输出待HTML页面时，使用编码或转义的方式来防御XSS攻击。XSS的本质就是“HTML注入”，用户的数据被当作HTML代码的一部分来执行，从而混淆了原本的语义，产生了新的语义。<br/><br/>触发XSS的地方docuemnt.write、xxx.innerHTML=、document.location.replace等<br/>用什么方法转义：主要有HTMLEncode和JavaScriptEncode。<br/><br/>
+		2、服务端：<br/>
+		(1)HttpOnly http或https才能读取cookic，js是读不到cookic的<br/>
+		(2)处理富文本  在服务器端配置富文本标签和属性的白名单，不允许出现其他标签和属性，及"XSS Filter",在存储之前进行过滤。
+	</p><br/>
+	<h3>sql 注入</h3>
+	<p>
+		原理： 就是通过把SQL命令插入到web表单提交或输入域名或页面请求查询字符串，最总达到欺骗服务器执行恶意的SQL命令。<br/>
+		防范：1、永远不要信任用户的输入要对用户的输入进行校验。<br/>
+		2、永远不要使用动态拼装SQL，可以使用参数化的	SQL或直接使用存储过程进行数据存储查找。<br/>
+		3、永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库链接。<br/>
+		4、不要把机密信息明文存放
+	</p><br/>
+	<h3>中间人攻击—man in the middle attack(简称MITM攻击)是一种古老的攻击方式</h3>
+	<p>
+		传输加密<br/>云访问安全代理<br/>防止自签名
+	</p>
+</body>
+</html>
